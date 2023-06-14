@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "./src/index.js"
+    "start": "node ./src/index.js"
   },
   "keywords": [],
   "author": "Mahmoud Sahbei",

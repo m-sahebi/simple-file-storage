@@ -7,40 +7,43 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 // Upload file
-router.post("/upload", authMiddleware, upload.single("myFile"), async (req, res) => {
+const multerMw = upload.single("myFile");
+router.post("/upload", authMiddleware, multerMw, async (req, res) => {
   console.log(req.file);
   if (req.file) {
-    res.json({
+    return res.json({
       filename: req.file.filename,
       mimeType: req.file.mimetype,
       size: req.file.size,
     });
   }
+  return res.status(400).end();
 });
 
 // This will delete a file
-router.delete("/f/:filename", async (req, res) => {
+router.delete("/:filename", async (req, res) => {
   const { filename } = req.params;
   if (!filename) {
     return res.status(400).json({ message: "Invalid filename" });
   }
 
-  const folderpath = `bucket/${fileName}`;
+  const path = `bucket/${filename}`;
 
-  fs.unlink(folderpath, (err) => {
+  if (!fs.existsSync(path)) {
+    return res.status(404).json({ message: "Not found" });
+  }
+
+  fs.unlink(path, (err) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
     }
     return res.json({ message: "File deleted successfully" });
   });
-  return res.json({ message: "File deleted successfully" });
 });
 
-export { router as fileRouter };
-
 //get a file (no need cuz we have static file server in express)
-// router.get("/f/:filename", (req, res) => {
+// router.get("/:filename", (req, res) => {
 //   const { filename } = req.params;
 //   if (!filename) {
 //     return res.status(400).json({ message: "Invalid filename" });
@@ -58,7 +61,7 @@ export { router as fileRouter };
 // });
 
 // get list of all files
-router.get("/f", authMiddleware, async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   const directoryPath = "bucket";
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
@@ -75,3 +78,5 @@ router.get("/f", authMiddleware, async (req, res) => {
     return res.json({ items: allfiles });
   });
 });
+
+export { router as fileRouter };

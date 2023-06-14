@@ -16,16 +16,14 @@
     <!-- style.css file path in the line below. -->
 <!--    <link rel="stylesheet" href="/css/style.css" />-->
     <!-- -------------------------------------- -->
-    <title>Multer Tutorial</title>
+    <title>Simple File Uploader</title>
   </head>
   <body>
     <main class="admin">
-      <div class="admin__upload-file">
-        <form action="/upload" enctype="multipart/form-data" method="POST">
+        <form action="/f/upload" enctype="multipart/form-data" method="POST">
             <input type="file" class="admin__input" id="myFile" name="myFile" />
             <input class="admin__submit" type="submit" />
-          </form>
-      </div>
+        </form>
     </main>
   </body>
 </html>
