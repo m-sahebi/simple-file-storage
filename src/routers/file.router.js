@@ -27,7 +27,7 @@ router.delete("/:filename", async (req, res) => {
     return res.status(400).json({ message: "Invalid filename" });
   }
 
-  const path = `bucket/${filename}`;
+  const path = `storage/${filename}`;
 
   if (!fs.existsSync(path)) {
     return res.status(404).json({ message: "Not found" });
@@ -49,7 +49,7 @@ router.delete("/:filename", async (req, res) => {
 //     return res.status(400).json({ message: "Invalid filename" });
 //   }
 //
-//   const filePath = `bucket/${filename}`;
+//   const filePath = `storage/${filename}`;
 //
 //   if (!fs.existsSync(filePath)) {
 //     return res.status(404).json({ message: "Not found" });
@@ -62,7 +62,7 @@ router.delete("/:filename", async (req, res) => {
 
 // get list of all files
 router.get("/", authMiddleware, async (req, res) => {
-  const directoryPath = "bucket";
+  const directoryPath = "storage";
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       return res.status(500).json({

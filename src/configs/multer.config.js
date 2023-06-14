@@ -14,7 +14,7 @@ export const upload = multer({
     destination: function (req, file, cb) {
       const folderName = req.query.folderName;
       console.log(req.query);
-      const path = folderName ? `bucket/${folderName}/` : "bucket/";
+      const path = folderName ? `storage/${folderName}/` : "storage/";
       fs.mkdirSync(path, { recursive: true });
       cb(null, path);
     },

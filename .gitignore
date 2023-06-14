@@ -2,7 +2,7 @@
 /.idea
 /.vscode
 *.db
-/bucket
+/storage
 
 # dependencies
 /node_modules
