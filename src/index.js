@@ -1,18 +1,20 @@
+import "dotenv/config";
 import { app } from "./app.js";
-
-const port = 9009;
-
 import cluster from "cluster";
+import { PORT } from "./configs/app.config.js";
+import { logConfigs } from "./utils/helpers.js";
+
 if (cluster.isMaster) {
   cluster.fork();
 
-  cluster.on("exit", function (worker, code, signal) {
+  cluster.on("exit", function () {
     cluster.fork();
   });
 }
 
 if (cluster.isWorker) {
-  app.listen(port, () => {
-    console.log(`Server Listening on Port http://localhost:${port}`);
+  app.listen(PORT, () => {
+    logConfigs();
+    console.log(`Server running on http://localhost:${PORT}`);
   });
 }

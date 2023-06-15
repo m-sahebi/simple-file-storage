@@ -15,17 +15,16 @@ app.set("views", path.join("./src", "views"));
 app.use("/f", fileRouter);
 app.use("/f", express.static(`./storage`, { fallthrough: false }));
 
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
   res.status(200).render("index");
 });
 
 app.use((req, res) => {
-  return res.status(404).json({ message: "Not found!" });
+  return res.status(404).end();
 });
 
-app.use((err, req, res, next) => {
-  if (!err || err.statusCode === 404) return res.status(404).json({ message: "Not found!" });
-  res.status(500).json({ message: "Something went wrong!" });
+app.use((err, req, res) => {
+  res.status(err.statusCode || 500).end();
   console.error(err);
 });
 
