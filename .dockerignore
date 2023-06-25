@@ -1,3 +1,9 @@
-storage/
-node_modules/
+storage
+node_modules
 .env
+.dockerignore
+npm-debug.log
+Dockerfile
+.git
+.gitignore
+.npmrc
