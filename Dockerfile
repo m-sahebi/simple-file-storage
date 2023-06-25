@@ -23,4 +23,4 @@ EXPOSE 9009
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-CMD [ "node", "./src/index.js" ]
+CMD [ "dumb-init", "node", "./src/index.js" ]
