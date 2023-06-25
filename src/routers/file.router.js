@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { upload } from "../configs/multer.config.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
+import sanitize from "sanitize-filename";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.post("/upload", authMiddleware, async (req, res) =>
     if (req.file) {
       return res.json({
         fileName: req.file.filename,
+        originalName: sanitize(req.file.originalName),
         mimeType: req.file.mimetype,
         size: req.file.size,
       });
