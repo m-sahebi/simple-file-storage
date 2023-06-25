@@ -16,7 +16,7 @@ COPY pnpm-lock.yaml ./
 RUN pnpm fetch --prod
 
 
-ADD ./src ./
+ADD . ./
 RUN pnpm install -r --offline --prod
 
 EXPOSE 9009
