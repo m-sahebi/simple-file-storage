@@ -13,8 +13,7 @@ const generateId = customAlphabet(
 export const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
-      const folderName = req.query.folderName;
-      const path = folderName ? `storage/${folderName}/` : "storage/";
+      const path = "storage/";
       fs.mkdirSync(path, { recursive: true });
       cb(null, path);
     },

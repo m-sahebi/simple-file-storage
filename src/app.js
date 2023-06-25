@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join("./src", "views"));
 
 app.use("/f", fileRouter);
-app.use("/f", express.static(`./storage`, { fallthrough: false }));
+// app.use("/f", express.static(`./storage`, { fallthrough: false }));
 
 app.get("/", (req, res) => {
   res.status(200).render("index");

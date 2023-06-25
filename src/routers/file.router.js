@@ -23,7 +23,7 @@ router.post("/upload", authMiddleware, async (req, res) =>
     if (req.file) {
       return res.json({
         fileName: req.file.filename,
-        originalName: sanitize(req.file.originalName),
+        originalName: sanitize(req.file.originalname),
         mimeType: req.file.mimetype,
         size: req.file.size,
       });
@@ -54,23 +54,23 @@ router.delete("/:fileName", authMiddleware, async (req, res) => {
   });
 });
 
-//get a file (no need cuz we have static file server in express)
-// router.get("/:fileName", (req, res) => {
-//   const { fileName } = req.params;
-//   if (!fileName) {
-//     return res.status(400).json({ message: "Invalid fileName" });
-//   }
-//
-//   const filePath = `storage/${fileName}`;
-//
-//   if (!fs.existsSync(filePath)) {
-//     return res.status(404).json({ message: "Not found" });
-//   }
-//   res.setHeader("Content-Disposition", `attachment; fileName="${fileName}"`);
-//   const fileStream = fs.createReadStream(filePath);
-//
-//   fileStream.pipe(res);
-// });
+// get a file (no need cuz we have static file server in express)
+router.get("/:fileName", async (req, res) => {
+  const fileName = sanitize(req.params.fileName ?? "");
+  if (!fileName) {
+    return res.status(400).json({ message: "Invalid fileName" });
+  }
+
+  const filePath = `storage/${fileName}`;
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  res.setHeader("Content-Disposition", `attachment; fileName="${fileName}"`);
+  const fileStream = fs.createReadStream(filePath);
+
+  fileStream.pipe(res);
+});
 
 // get list of all files
 router.get("/", authMiddleware, async (req, res) => {

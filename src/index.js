@@ -1,20 +1,20 @@
 import "dotenv/config";
 import { app } from "./app.js";
-import cluster from "cluster";
 import { PORT } from "./configs/app.config.js";
 import { logConfigs } from "./utils/helpers.js";
 
-if (cluster.isMaster) {
-  cluster.fork();
+const server = app.listen(PORT, () => {
+  logConfigs();
+  console.log(`Server running at http://localhost:${PORT}`);
+});
 
-  cluster.on("exit", function () {
-    cluster.fork();
+async function closeGracefully(signal) {
+  console.log(`=> Received signal to terminate: ${signal}`);
+  await server.close(async (err) => {
+    console.log(err ? `Error while closing the server: ${err}` : "Server closed gracefully");
+    process.kill(process.pid, signal);
   });
 }
 
-if (cluster.isWorker) {
-  app.listen(PORT, () => {
-    logConfigs();
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-}
+process.once("SIGINT", closeGracefully);
+process.once("SIGTERM", closeGracefully);
