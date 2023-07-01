@@ -13,7 +13,7 @@ export const upload = multer({
       cb(null, path);
     },
     filename: function (req, file, cb) {
-      cb(null, generateId() + path.extname(file.originalname).toLowerCase());
+      cb(null, generateId() + path.extname(file.originalname).trim().toLowerCase());
     },
   }),
   limits: { fileSize: MAX_FILE_SIZE },

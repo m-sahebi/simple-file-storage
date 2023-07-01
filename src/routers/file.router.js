@@ -27,7 +27,7 @@ router.post("/upload", authMiddleware, async (req, res) =>
     if (req.file) {
       return res.json({
         fileName: req.file.filename,
-        originalName: (p.name || generateId(5)) + p.ext.toLowerCase(),
+        originalName: (p.name.trim() || generateId(5)) + p.ext.toLowerCase().trim(),
         mimeType: req.file.mimetype,
         size: req.file.size,
       });
