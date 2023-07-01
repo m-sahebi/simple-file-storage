@@ -1,15 +1,10 @@
 import fs from "fs";
 import path from "path";
 import multer from "multer";
-import { customAlphabet } from "nanoid";
 import { MAX_FILE_SIZE } from "./app.config.js";
+import { generateId } from "../utils/helpers.js";
 
-const generateId = customAlphabet(
-  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-  20,
-);
-
-//Multer that handle File Uploads
+//Multer handle File Uploads
 export const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
@@ -18,7 +13,7 @@ export const upload = multer({
       cb(null, path);
     },
     filename: function (req, file, cb) {
-      cb(null, generateId() + path.extname(file.originalname));
+      cb(null, generateId() + path.extname(file.originalname).toLowerCase());
     },
   }),
   limits: { fileSize: MAX_FILE_SIZE },

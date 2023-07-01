@@ -4,6 +4,7 @@ import path from "path";
 import { upload } from "../configs/multer.config.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import sanitize from "sanitize-filename";
+import { generateId } from "../utils/helpers.js";
 
 const router = Router();
 
@@ -20,10 +21,13 @@ router.post("/upload", authMiddleware, async (req, res) =>
       return res.status(400).send({ message: err.message });
     }
     console.log("File:\n", req.file);
+
+    const p = path.parse(sanitize(req.file.originalname));
+
     if (req.file) {
       return res.json({
         fileName: req.file.filename,
-        originalName: sanitize(req.file.originalname),
+        originalName: (p.name || generateId(5)) + p.ext.toLowerCase(),
         mimeType: req.file.mimetype,
         size: req.file.size,
       });

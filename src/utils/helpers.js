@@ -1,9 +1,24 @@
 import * as CONFIGS from "../configs/app.config.js";
 import jwt from "jsonwebtoken";
+import { customAlphabet } from "nanoid";
 
 // change it to desired value
 const FILE_UPLOAD_SECRET = "";
 const DEFAULT_MAX_AGE = 5 * 60;
+
+export const generateId = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  20,
+);
+
+export function fileNameExtSplit(fullName = "") {
+  const idx = fullName.lastIndexOf(".");
+  if (idx === -1) return [fullName, ""];
+  const name = fullName.slice(0, idx);
+  // if file name is like `.example`
+  if (!name) return [fullName, ""];
+  return [name, fullName.slice(idx + 1)];
+}
 
 export async function signJwt(token = {}, secret = "", opt = {}) {
   return new Promise((resolve, reject) =>
