@@ -5,6 +5,7 @@ import path from "path";
 import cors from "cors";
 
 const app = express();
+app.disable("x-powered-by");
 
 app.use(cors());
 
