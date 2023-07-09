@@ -58,7 +58,7 @@ router.delete("/:fileName", authMiddleware, async (req, res) => {
   });
 });
 
-// get a file (no need cuz we have static file server in express)
+// get a file
 router.get("/:fileName", async (req, res) => {
   const fileName = sanitize(req.params.fileName ?? "");
   if (!fileName) {
@@ -70,13 +70,13 @@ router.get("/:fileName", async (req, res) => {
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({ message: "Not found" });
   }
-  res.setHeader("Content-Disposition", `attachment; fileName="${fileName}"`);
+  res.setHeader("Content-Disposition", `inline; fileName="${fileName}"`);
   const fileStream = fs.createReadStream(filePath);
 
   fileStream.pipe(res);
 });
 
-// get list of all files
+// get a list of all files
 router.get("/", authMiddleware, async (req, res) => {
   const directoryPath = "storage";
   fs.readdir(directoryPath, (err, files) => {
