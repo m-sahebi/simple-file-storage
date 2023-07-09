@@ -5,11 +5,14 @@ RUN apt install dumb-init
 
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV PORT 9009
-ENV UPLOAD_MAX_FILE_SIZE 1000000
-
 RUN npm install -g pnpm
+
+ARG PORT
+ARG UPLOAD_MAX_FILE_SIZE
+
+ENV NODE_ENV production
+ENV PORT ${PORT}
+ENV UPLOAD_MAX_FILE_SIZE ${UPLOAD_MAX_FILE_SIZE}
 
 COPY pnpm-lock.yaml ./
 
