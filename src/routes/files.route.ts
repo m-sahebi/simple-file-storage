@@ -17,9 +17,7 @@ export type FileResponse = {
   lastModified: number;
 };
 
-export const fileListCache = new Set(
-  env.FILEWATCHER_MODE ? [] : fs.readdirSync(config.STORAGE_PATH),
-);
+export const fileListCache = new Set(fs.readdirSync(config.STORAGE_PATH));
 export function modifyFileListCache(filename: string, action: "add" | "delete") {
   if (env.FILEWATCHER_MODE) return;
   switch (action) {
@@ -35,7 +33,7 @@ export function modifyFileListCache(filename: string, action: "add" | "delete") 
 }
 
 if (env.FILEWATCHER_MODE) {
-  watch(config.STORAGE_PATH)
+  watch(config.STORAGE_PATH, { ignoreInitial: true })
     .on("add", (p) => {
       if (env.VERBOSE) console.log($chalk.info("  + ADD", path.basename(p)));
       fileListCache.add(path.basename(p));
