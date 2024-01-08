@@ -3,6 +3,8 @@
 /.vscode
 *.db
 /storage
+*.ignore.*
+*.ignore
 
 # dependencies
 /node_modules
@@ -18,6 +20,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
