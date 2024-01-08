@@ -23,5 +23,16 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "imports": {
+    "#src/*.js": "./src/*.js",
+    "#root/*.js": "./*.js"
+  },
+  "engines": {
+    "node": "20.10.0"
+  },
+  "volta": {
+    "node": "20.10.0"
+  },
+  "packageManager": "pnpm@8.14.0"
 }

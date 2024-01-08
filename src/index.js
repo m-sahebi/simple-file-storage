@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { app } from "./app.js";
+import { app } from "#src/app.js";
 import { PORT } from "./configs/app.config.js";
 import { logConfigs } from "./utils/helpers.js";
 
