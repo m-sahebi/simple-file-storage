@@ -1,7 +1,6 @@
-FROM node:lts-slim
+FROM node:lts-alpine
 
-RUN apt update
-RUN apt install dumb-init
+RUN apk add dumb-init
 
 WORKDIR /app
 
