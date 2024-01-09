@@ -10,7 +10,7 @@ ARG PORT
 ARG UPLOAD_MAX_FILE_SIZE
 
 ENV NODE_ENV production
-ENV PORT ${PORT}
+ENV PORT 9009
 ENV UPLOAD_MAX_FILE_SIZE ${UPLOAD_MAX_FILE_SIZE}
 
 COPY pnpm-lock.yaml ./
@@ -20,9 +20,11 @@ RUN pnpm fetch --prod
 
 ADD . ./
 RUN pnpm install -r --offline --prod
+RUN pnpm build
+
 
 EXPOSE 9009
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-CMD [ "node", "./src/index.js" ]
+CMD [ "pnpm", "serve" ]

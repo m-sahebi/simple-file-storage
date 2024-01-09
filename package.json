@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file=.env src/index.ts",
-    "build": "tsup src/index.ts --treeshake --format esm --env.NODE_ENV production",
+    "build": "tsup src/index.ts --treeshake --dts --format esm --env.NODE_ENV production",
     "serve": "node dist/index.js"
   },
   "dependencies": {
@@ -18,13 +18,13 @@
     "hono": "^3.12.0",
     "nanoid": "^5.0.4",
     "sanitize-filename": "^1.6.3",
+    "tsup": "^8.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@vercel/style-guide": "^5.1.0",
     "eslint": "^8.56.0",
     "prettier": "^3.1.1",
-    "tsup": "^8.0.1",
     "tsx": "^3.12.2",
     "typescript": "^5.3.3"
   },
