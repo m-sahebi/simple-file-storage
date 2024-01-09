@@ -7,4 +7,5 @@ export const $chalk = {
   error: chalk.whiteBright.bgRed,
   info: chalk.cyan,
   warn: chalk.yellow,
+  muted: chalk.gray,
 };
