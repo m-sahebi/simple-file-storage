@@ -36,11 +36,11 @@ if (env.VERBOSE) {
 api.use("*", cors());
 api.route("/files", filesRoute);
 
-api.doc31("/docs", {
+api.doc31("/openapi.json", {
   openapi: "3.1.0",
   info: { version: "1.0.0", title: "Simple File Storage API" },
 });
-api.get("/", swaggerUI({ url: "/api/v1/docs" }));
+api.get("/docs", swaggerUI({ url: "/api/v1/openapi.json" }));
 
 export type FileStorageApi = typeof api;
 
