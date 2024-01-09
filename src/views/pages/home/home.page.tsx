@@ -15,14 +15,14 @@ export function HomePage() {
   return (
     <>
       <h1>Simple File Storage</h1>
-      <form action="/api/files" encType="multipart/form-data" method="POST">
+      <form action="/api/v1/files" encType="multipart/form-data" method="POST">
         <input type="file" id="files" name="files" />
         <input type="submit" />
       </form>
       <h2>Files</h2>
       <div class={fileListClass}>
         {fileList.map((f) => (
-          <a key={f} href={`/api/files/${f}`}>
+          <a key={f} href={`/api/v1/files/${f}`}>
             {f}
           </a>
         ))}
