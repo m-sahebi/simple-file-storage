@@ -4,8 +4,11 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/index.ts",
-    "build": "tsup src/index.ts --treeshake --dts --format esm --env.NODE_ENV production",
+    "dev": "run-p dev:*",
+    "dev:tsx": "tsx watch --env-file=.env src/index.ts",
+    "dev:tw": "tailwindcss -i ./src/views/assets/styles/global.css -o public/styles/tw.ignore.css --watch",
+    "build": "pnpm build:tw && tsup src/index.ts --treeshake --dts --format esm --env.NODE_ENV production",
+    "build:tw": "tailwindcss -i ./src/views/assets/styles/global.css -o public/styles/tw.ignore.css --minify",
     "serve": "node dist/index.js"
   },
   "dependencies": {
@@ -22,9 +25,13 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
     "@vercel/style-guide": "^5.1.0",
     "eslint": "^8.56.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.1",
     "tsx": "^3.12.2",
     "typescript": "^5.3.3"
   },
