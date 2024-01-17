@@ -18,6 +18,5 @@
       "#root/*": ["./*"]
     }
   },
-  "include": [".eslintrc.js", "src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"]
 }
