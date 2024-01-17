@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  min-width: 0;
+  min-height: 0;
+}
+
+@layer base {
+  body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    @apply flex flex-col min-h-svh dark:bg-neutral-800;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  input[type="file"] {
+    @apply inline-block text-base text-neutral-500
+    file:mr-4 file:py-2 file:px-4
+    file:rounded-md file:border-0
+    file:text-sm file:font-semibold
+    file:bg-neutral-100 dark:file:bg-neutral-700
+    file:text-neutral-700 dark:file:text-neutral-100
+    hover:file:bg-neutral-200;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-lg;
+  }
+}
+
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .flex-center {
+    @apply flex items-center;
+  }
+  .flex-center-center {
+    @apply flex items-center justify-center;
+  }
+}

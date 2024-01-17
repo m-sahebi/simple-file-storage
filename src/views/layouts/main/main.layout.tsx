@@ -1,14 +1,6 @@
 import { ErrorBoundary, type Child } from "hono/jsx";
-import { css, Style } from "hono/css";
-
-const bodyClass = css`
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-  margin: 0;
-  padding: 24px;
-`;
+import { Style } from "hono/css";
+import { html } from "hono/html";
 
 type Props = {
   children: Child;
@@ -22,16 +14,16 @@ export function MainLayout({ children }: Props) {
         </div>
       }
     >
+      {html`<!doctype html>`}
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Simple File Uploader</title>
+          <link href="/public/styles/tw.ignore.css" rel="stylesheet" />
           <Style />
         </head>
-        <body class={bodyClass}>
-          <main>{children}</main>
-        </body>
+        <body id="app">{children}</body>
       </html>
     </ErrorBoundary>
   );
