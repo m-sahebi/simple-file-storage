@@ -10,12 +10,8 @@
 
 @layer base {
   body {
-    font-family: "Inter", sans-serif;
     min-height: 100vh;
-    @apply flex flex-col min-h-svh dark:bg-neutral-800;
-  }
-  button {
-    @apply cursor-pointer;
+    @apply font-sans flex flex-col min-h-svh dark:bg-neutral-800;
   }
   input[type="file"] {
     @apply inline-block text-base text-neutral-500
@@ -29,8 +25,9 @@
 }
 
 @layer components {
-  .btn-blue {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-lg;
+  .btn {
+    padding: .25em .75em;
+    @apply cursor-pointer font-sans bg-neutral-500 hover:bg-neutral-700 text-white text-base font-semibold rounded-lg;
   }
 }
 
