@@ -161,6 +161,8 @@ filesRoute.openapi(
         return c.json({ message: messages.error.INVALID_FILE }, 400);
       } else if (f.size > env.MAX_UPLOAD_SIZE) {
         return c.json({ message: messages.error.FILE_TOO_LARGE }, 400);
+      } else if (f.size === 0) {
+        return c.json({ message: messages.error.FILE_EMPTY }, 400);
       }
     }
 

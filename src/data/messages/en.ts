@@ -6,6 +6,7 @@ export const messages = {
     NOT_FOUND: "Not found",
     INVALID_FILE: "Invalid file",
     FILE_TOO_LARGE: "File too large",
+    FILE_EMPTY: "Empty file",
     INVALID_FILE_TYPE: "Invalid file type",
     INVALID_FILE_ID: "Invalid file id",
     TOO_MANY_FILES: "Too many files",
