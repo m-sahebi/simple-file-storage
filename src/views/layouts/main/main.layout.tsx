@@ -7,6 +7,7 @@ type Props = {
 };
 export function MainLayout({ children }: Props) {
   return (
+    // TODO: add error-boundary here
     <>
       {html`<!doctype html>`}
       <html lang="en">
