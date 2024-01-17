@@ -10,19 +10,30 @@ export function HomePage() {
       <form
         class={"rounded-xl border-dashed border-2 p-3 self-start"}
         action="/api/v1/files"
-        encType="multipart/form-data"
+        enctype="multipart/form-data"
         method="POST"
       >
-        <input type="file" name="files" multiple />
+        <input type="file" name="files" multiple="true" />
         <input type="submit" class="btn-blue" />
       </form>
       <h2>Files</h2>
       <div class="flex flex-col gap-1 font-mono">
-        {fileList.map((f) => (
-          <a key={f} href={`/api/v1/files/${f}`}>
-            {f}
-          </a>
-        ))}
+        {fileList.map((f) => {
+          const divId = f.replace(".", "-");
+          return (
+            <div key={divId} id={divId} class="flex gap-1">
+              <a href={`/api/v1/files/${f}`}>{f}</a>
+              <button
+                class="btn-blue"
+                hx-delete={`/api/v1/files/${f}`}
+                hx-target={"closest div"}
+                hx-swap={"delete"}
+              >
+                Delete
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -64,6 +64,9 @@ devDependencies:
   tsx:
     specifier: ^3.12.2
     version: 3.14.0
+  typed-htmx:
+    specifier: ^0.2.0
+    version: 0.2.0
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -4242,6 +4245,18 @@ packages:
       call-bind: 1.0.5
       for-each: 0.3.3
       is-typed-array: 1.1.12
+    dev: true
+
+  /typed-html@3.0.1:
+    resolution: {integrity: sha512-JKCM9zTfPDuPqQqdGZBWSEiItShliKkBFg5c6yOR8zth43v763XkAzTWaOlVqc0Y6p9ee8AaAbipGfUnCsYZUA==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /typed-htmx@0.2.0:
+    resolution: {integrity: sha512-Cw1zKR2isYT0OTsRmzOzLFsOC1RKVUH+raouZG/f98tQyCPhEmvJ8JNiyME1bF5LnjBT7Qxc/R3CxqJRFGjaew==}
+    engines: {node: '>=12'}
+    dependencies:
+      typed-html: 3.0.1
     dev: true
 
   /typescript@5.3.3:
