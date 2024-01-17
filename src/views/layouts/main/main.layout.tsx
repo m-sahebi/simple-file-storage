@@ -1,6 +1,6 @@
 import type { Child } from "hono/jsx";
 import { Style } from "hono/css";
-import { html } from "hono/html";
+import { raw } from "hono/html";
 
 type Props = {
   children: Child;
@@ -9,7 +9,7 @@ export function MainLayout({ children }: Props) {
   return (
     // TODO: add error-boundary here
     <>
-      {html`<!doctype html>`}
+      {raw`<!DOCTYPE html>`}
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
